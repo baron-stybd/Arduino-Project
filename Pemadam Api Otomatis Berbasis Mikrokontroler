@@ -1,0 +1,124 @@
+// LDR
+int ldrPin = A0; // Pin untuk LDR
+int ldrValue = 0; // Variabel untuk menyimpan nilai LDR
+
+// Temp
+int tempPin = A1; // Pin untuk LM35
+float tempValue = 0; // Variabel untuk menyimpan nilai suhu
+
+// Ultrasonic
+#define trigPin 6
+#define echoPin 7
+
+// Aktuator
+#include <Servo.h>
+
+// LED
+int led1 = 12;
+int led2 = 11;
+
+// Motor
+int motor = 10;
+
+// Buzzer
+int buzzer = 8;
+
+// Servo
+Servo servoKu; // Membuat objek servo
+int servoPin = 9; // Pin untuk servo
+
+void setup()
+{
+  // Serial
+  Serial.begin(9600);
+  
+  // Input = Sensor
+  pinMode(trigPin, OUTPUT); // Mengatur pin trig sebagai output
+  pinMode(echoPin, INPUT);  // Mengatur pin echo sebagai input
+  
+  // Output = Aktuator
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(motor, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  servoKu.attach(servoPin);
+}
+
+void loop()
+{
+  // Sensor
+  
+  //LDR
+  ldrValue = analogRead(ldrPin); // Membaca nilai dari LDR
+  Serial.print("LDR Value: ");
+  Serial.println(ldrValue); // Mencetak nilai LDR ke Serial Monitor
+  
+  // Temp
+  int sensorValue = analogRead(tempPin); // Membaca nilai dari sensor suhu
+  tempValue = sensorValue * 0.48828125; // Mengonversi nilai analog ke suhu dalam derajat Celcius
+  Serial.print("Temperature: ");
+  Serial.print(tempValue);
+  Serial.println(" C"); // Mencetak nilai suhu ke Serial Monitor
+  
+  // Ultrasonic
+  long duration, distance;
+  
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2); 
+  
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10); 
+  digitalWrite(trigPin, LOW);
+  
+  duration = pulseIn(echoPin, HIGH);
+  
+  distance = (duration / 2) / 29.1; // Menghitung jarak dalam cm
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm"); // Mencetak jarak ke Serial Monitor
+  
+  // Kondisi sensor untuk aktuator
+  if (distance > 100){
+  	LEDSetup(led1);
+  }
+  
+  // Aktuator
+  ServoSetup(0);
+  ServoSetup(90);
+  ServoSetup(180);
+  LEDSetup(led1); // LED 1
+  LEDSetup(led2); // LED 2
+  MotorSetup(motor); // Motor
+  BuzzerSetup(buzzer); //Buzzer
+}
+
+// Aktuator Servo
+void ServoSetup(int derajat){
+  servoKu.write(derajat);
+  delay(1000); 
+}
+
+// Aktuator LED
+void LEDSetup(int led){
+	digitalWrite(led, HIGH);
+    delay(1000); // 1000 Detik
+    digitalWrite(led, LOW);
+    delay(1000); // 1000 Detik
+}
+
+// Aktuator Motor
+void MotorSetup(int motor){
+	digitalWrite(motor, HIGH);
+    delay(1000); // 1000 Detik
+    digitalWrite(motor, LOW);
+    delay(1000); // 1000 Detik
+}
+
+// Aktuator Buzzer
+void BuzzerSetup(int buzzer){
+	digitalWrite(buzzer, HIGH);
+    delay(1000); // 1000 Detik
+    digitalWrite(buzzer, LOW);
+    delay(1000); // 1000 Detik
+}
