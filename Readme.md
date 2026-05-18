@@ -16,6 +16,7 @@ Proyek ini adalah sistem pembacaan suhu *real-time* menggunakan sensor TMP36 ber
 Pastikan koneksi pin terpasang dengan presisi agar sensor mendapatkan daya yang stabil dan tidak menghasilkan nilai *floating*.
 
 **Sensor Suhu (TMP36):**
+![TMP36](Cuplikanlayar2026-05-18231231.jpg)
 * Kaki Kiri (VCC) $\rightarrow$ Pin **5V** Arduino
 * Kaki Tengah (VOUT) $\rightarrow$ Pin **A0** Arduino
 * Kaki Kanan (GND) $\rightarrow$ Pin **GND** Arduino
