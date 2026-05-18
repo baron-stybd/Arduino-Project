@@ -1,0 +1,22 @@
+const int ledPin = 13; // Diubah ke 13 sesuai dengan rangkaianmu
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(A0, INPUT);
+  pinMode(ledPin, OUTPUT); // Mengatur pin LED sebagai OUTPUT
+}
+
+void loop() {
+  // Menghitung nilai suhu dari sensor TMP36
+  float temp = ((analogRead(A0) * (5.0 / 1024.0)) - 0.5) / 0.01;
+  Serial.println(temp);
+
+  // Logika untuk menyalakan/mematikan LED sesuai kondisi suhu
+  if (temp > 50.0) {
+    digitalWrite(ledPin, HIGH); // Jalankan LED jika suhu di atas 50 derajat
+  } else {
+    digitalWrite(ledPin, LOW);  // Matikan LED jika suhu 50 derajat atau di bawahnya
+  }
+
+  delay(200);
+}
