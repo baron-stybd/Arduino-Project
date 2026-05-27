@@ -27,6 +27,3 @@ Berikut adalah visualisasi grafis dari rangkaian komponen yang digunakan dalam p
 2. Nilai mentah (ADC) tersebut dikonversi menjadi rentang persentase menggunakan fungsi `map()`.
 3. Fungsi `constrain()` digunakan untuk memastikan nilai persentase tidak melebihi batas 100% atau kurang dari 0%.
 4. Hasil akhir dikirim ke LCD 16x2 untuk ditampilkan secara *real-time*.
-
-## 👨‍💻 Penulis
-**JockerOldmoney** - Politeknik Perkapalan Negeri Surabaya (PPNS)
