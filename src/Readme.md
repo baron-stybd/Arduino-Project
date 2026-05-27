@@ -6,7 +6,7 @@ Proyek ini adalah simulasi pembacaan intensitas cahaya menggunakan sensor LDR (L
 
 Berikut adalah visualisasi grafis dari rangkaian komponen yang digunakan dalam proyek ini:
 
-![Skema Rangkaian](2026-05-2026.jpg)
+![Skema Rangkaian](src/Cuplikanlayar2026-05-26194716.png)
 
 ### Konfigurasi Pin
 
